@@ -604,7 +604,7 @@
 <body>
 
 <header class="header">
-  <a href="#" class="logo" id="homeLogoLink">Rajkumar <span>Muddasani</span></a>
+  <a href="#" class="logo" id="passport.jpeg">Rajkumar <span>Muddasani</span></a>
   <div class="navbar">
     <a class="nav-link" data-target="home">Home</a>
     <a class="nav-link" data-target="about">About</a>
