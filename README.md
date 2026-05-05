@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -234,7 +235,9 @@
       display: flex;
       justify-content: center;
     }
-    .image-upload-wrapper {
+    
+    /* Professional Circular Image Frame - Perfect Fit, No Black Space */
+    .profile-frame {
       position: relative;
       width: 380px;
       height: 380px;
@@ -242,30 +245,20 @@
       border: 5px solid #0ef;
       box-shadow: 0 0 40px rgba(0, 238, 255, 0.4);
       overflow: hidden;
-      cursor: pointer;
       transition: 0.3s;
+      background: transparent;
     }
-    .image-upload-wrapper:hover {
+    .profile-frame:hover {
       transform: scale(1.02);
       box-shadow: 0 0 55px #0ef;
     }
-    .image-upload-wrapper img {
+    .profile-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-    .upload-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.75);
-      padding: 12px;
-      text-align: center;
-      font-size: 13px;
-      color: #0ef;
-      backdrop-filter: blur(6px);
-      font-weight: 500;
+      object-position: center 25%;
+      display: block;
+      transform: scale(1.12);
     }
 
     /* About Section */
@@ -535,6 +528,11 @@
     .footer p {
       color: #888;
       font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+    .footer .highlight-footer {
+      color: #0ef;
+      font-weight: 700;
     }
 
     /* Hidden class */
@@ -558,6 +556,10 @@
       }
       .section-title {
         font-size: 2.2rem;
+      }
+      .profile-frame {
+        width: 300px;
+        height: 300px;
       }
     }
     @media (max-width: 768px) {
@@ -588,9 +590,9 @@
       .projects-grid {
         grid-template-columns: 1fr;
       }
-      .image-upload-wrapper {
-        width: 280px;
-        height: 280px;
+      .profile-frame {
+        width: 260px;
+        height: 260px;
       }
       .btn-outline {
         margin-left: 10px;
@@ -604,7 +606,7 @@
 <body>
 
 <header class="header">
-  <a href="#" class="logo" id="passport.jpeg">Rajkumar <span>Muddasani</span></a>
+  <a href="#" class="logo" id="homeLogoLink">Rajkumar <span>Muddasani</span></a>
   <div class="navbar">
     <a class="nav-link" data-target="home">Home</a>
     <a class="nav-link" data-target="about">About</a>
@@ -643,12 +645,8 @@
     </div>
   </div>
   <div class="home-img">
-    <div class="image-upload-wrapper" id="photoUploadWrapper">
-      <img id="profileImage" src="passport.jpeg" alt="Profile Photo">
-      <div class="upload-overlay">
-        <i class='bx bx-camera'></i> Upload Professional Photo
-      </div>
-      <input type="file" id="photoInput" accept="image/*" style="display: none;">
+    <div class="profile-frame">
+      <img id="profileImage" src="https://github.com/RAJkumar123887/PORTFOLIO/blob/main/passport.jpeg?raw=true" alt="Rajkumar Muddasani - Professional Photo" onerror="this.src='https://via.placeholder.com/400x400?text=Photo'">
     </div>
   </div>
 </section>
@@ -754,7 +752,7 @@
 </section>
 
 <footer class="footer">
-  <p>© 2025 Rajkumar Muddasani | Data Analyst & AI/ML Engineer | Available for On-site · Hybrid · Remote Roles</p>
+  <p>| <span class="highlight-footer">RAJKUMAR_MUDDASANI PORTFOLIO</span> | Data Analyst & AI/ML Engineer |</p>
 </footer>
 
 <script>
@@ -840,26 +838,21 @@
     menuIcon.classList.toggle('bx-x');
   });
   
-  // Image Upload
-  const wrapper = document.getElementById('photoUploadWrapper');
-  const fileInput = document.getElementById('photoInput');
+  // Ensure image covers all black space perfectly - zoomed in to remove side gaps
   const profileImg = document.getElementById('profileImage');
-  
-  if (wrapper) {
-    wrapper.addEventListener('click', () => {
-      fileInput.click();
-    });
-  }
-  fileInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        profileImg.src = ev.target.result;
-      };
-      reader.readAsDataURL(file);
+  if (profileImg) {
+    const applyImageStyles = () => {
+      profileImg.style.objectFit = 'cover';
+      profileImg.style.objectPosition = 'center 25%';
+      profileImg.style.transform = 'scale(1.12)';
+      profileImg.style.width = '100%';
+      profileImg.style.height = '100%';
+    };
+    profileImg.onload = applyImageStyles;
+    if (profileImg.complete) {
+      applyImageStyles();
     }
-  });
+  }
   
   // Contact Form Handler
   const contactForm = document.getElementById('contactForm');
