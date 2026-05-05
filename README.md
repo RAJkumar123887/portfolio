@@ -1,9 +1,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
   <meta name="description" content="Rajkumar Muddasani - Data Analyst, Front-end Developer, AI/ML Enthusiast. Professional portfolio showcasing data analytics, AI/ML projects, and full-stack development expertise.">
   <meta name="author" content="Rajkumar Muddasani">
+  <!-- iOS / Android specific meta tags for polished Web App feel -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <meta name="format-detection" content="telephone=no">
   <title>Rajkumar Muddasani | Data Analyst & AI/ML Portfolio</title>
   <!-- Boxicons & Google Fonts -->
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -13,6 +18,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -20,6 +26,8 @@
       background: #0a0a0a;
       scroll-behavior: smooth;
       font-family: 'Poppins', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Header */
@@ -235,7 +243,7 @@
       justify-content: center;
     }
     
-    /* Professional Circular Image Frame - Perfect Fit, No Black Space */
+    /* Professional Circular Image Frame - Perfect Fit */
     .profile-frame {
       position: relative;
       width: 380px;
@@ -539,6 +547,43 @@
       display: none !important;
     }
 
+    /* ========== ANDROID & iOS SPECIFIC CUSTOMIZATION ========== */
+    /* Smoother scrolling and momentum momentum */
+    @supports (-webkit-overflow-scrolling: touch) {
+      body {
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+    /* iOS style tap highlight removal & better buttons */
+    .btn, .home-sci a, .skill-tag, .project-link, .navbar a {
+      cursor: pointer;
+      -webkit-tap-highlight-color: rgba(0, 238, 255, 0.25);
+    }
+    /* Better touch scaling for buttons on mobile */
+    @media (hover: hover) {
+      .btn:hover, .home-sci a:hover {
+        transform: translateY(-3px);
+      }
+    }
+    @media (hover: none) {
+      .btn:active, .home-sci a:active {
+        transform: scale(0.96);
+        transition: 0.05s;
+      }
+      .project-card:active, .exp-card:active {
+        transform: scale(0.99);
+      }
+    }
+    /* Native-like scrollbar hide for iOS/Android (optional but neat) */
+    ::-webkit-scrollbar {
+      width: 5px;
+      background: #1a1a1a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0ef;
+      border-radius: 10px;
+    }
+    /* Mobile safe area adjustments */
     @media (max-width: 992px) {
       .home {
         flex-direction: column-reverse;
@@ -570,9 +615,10 @@
         top: 100%;
         left: -100%;
         width: 100%;
-        background: #0a0a0a;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(20px);
         padding: 25px 0;
-        transition: 0.3s;
+        transition: 0.3s ease-in-out;
         text-align: center;
         border-bottom: 1px solid #0ef;
       }
@@ -582,6 +628,7 @@
       .navbar a {
         display: block;
         margin: 15px 0;
+        font-size: 18px;
       }
       .home-content h1 {
         font-size: 2.5rem;
@@ -598,6 +645,16 @@
       }
       .preference-icons {
         gap: 20px;
+      }
+      /* improve spacing for iOS notch */
+      .header {
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-left: max(8%, env(safe-area-inset-left));
+        padding-right: max(8%, env(safe-area-inset-right));
+      }
+      section {
+        padding-left: max(8%, env(safe-area-inset-left));
+        padding-right: max(8%, env(safe-area-inset-right));
       }
     }
   </style>
@@ -660,7 +717,6 @@
       <p>Experienced in designing interactive dashboards, optimizing data pipelines, and automating reporting processes to enhance business decision-making and operational efficiency. Adept at integrating advanced AI solutions using OpenAI API and LangChain to streamline workflows and enable intelligent automation. Committed to delivering high-quality, impactful solutions that drive business value.</p>
     </div>
     
-    <!-- Work Preference Section -->
     <div class="work-preference">
       <h4><i class='bx bx-briefcase'></i> Work Availability</h4>
       <div class="preference-icons">
@@ -750,8 +806,10 @@
   </div>
 </section>
 
+<!-- ========== MODIFIED FOOTER: "DONT MENTION THIS IN FOOTER PART" ==========
+     Removed mention of "RAJKUMAR_MUDDASANI PORTFOLIO" per instruction — just minimal icon only -->
 <footer class="footer">
-  <p>| <span class="highlight-footer">RAJKUMAR_MUDDASANI PORTFOLIO</span> | Data Analyst & AI/ML Engineer |</p>
+  <p><span style="opacity:0.5;">✦</span>  Data & AI  <span style="opacity:0.5;">✦</span></p>
 </footer>
 
 <script>
@@ -837,7 +895,6 @@
     menuIcon.classList.toggle('bx-x');
   });
   
-  // Ensure image covers all black space perfectly - zoomed in to remove side gaps
   const profileImg = document.getElementById('profileImage');
   if (profileImg) {
     const applyImageStyles = () => {
@@ -848,12 +905,9 @@
       profileImg.style.height = '100%';
     };
     profileImg.onload = applyImageStyles;
-    if (profileImg.complete) {
-      applyImageStyles();
-    }
+    if (profileImg.complete) applyImageStyles();
   }
   
-  // Contact Form Handler
   const contactForm = document.getElementById('contactForm');
   const formStatus = document.getElementById('formStatus');
   if (contactForm) {
@@ -873,7 +927,6 @@
     });
   }
   
-  // Scroll Reveal Animation
   const revealElements = document.querySelectorAll('.exp-card, .project-card, .skill-tag');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
