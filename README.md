@@ -533,13 +533,27 @@
       border-top: 1px solid #1a1a1a;
     }
     .footer p {
-      color: #888;
+      color: #aaa;
       font-size: 0.9rem;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    .footer .highlight-footer {
+    .footer .portfolio-name {
       color: #0ef;
       font-weight: 700;
+      background: rgba(0, 238, 255, 0.12);
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      letter-spacing: 0.8px;
+    }
+    .footer i {
+      font-size: 16px;
+      color: #0ef;
     }
 
     /* Hidden class */
@@ -548,18 +562,15 @@
     }
 
     /* ========== ANDROID & iOS SPECIFIC CUSTOMIZATION ========== */
-    /* Smoother scrolling and momentum momentum */
     @supports (-webkit-overflow-scrolling: touch) {
       body {
         -webkit-overflow-scrolling: touch;
       }
     }
-    /* iOS style tap highlight removal & better buttons */
     .btn, .home-sci a, .skill-tag, .project-link, .navbar a {
       cursor: pointer;
       -webkit-tap-highlight-color: rgba(0, 238, 255, 0.25);
     }
-    /* Better touch scaling for buttons on mobile */
     @media (hover: hover) {
       .btn:hover, .home-sci a:hover {
         transform: translateY(-3px);
@@ -574,7 +585,6 @@
         transform: scale(0.99);
       }
     }
-    /* Native-like scrollbar hide for iOS/Android (optional but neat) */
     ::-webkit-scrollbar {
       width: 5px;
       background: #1a1a1a;
@@ -583,7 +593,6 @@
       background: #0ef;
       border-radius: 10px;
     }
-    /* Mobile safe area adjustments */
     @media (max-width: 992px) {
       .home {
         flex-direction: column-reverse;
@@ -646,7 +655,6 @@
       .preference-icons {
         gap: 20px;
       }
-      /* improve spacing for iOS notch */
       .header {
         padding-top: max(20px, env(safe-area-inset-top));
         padding-left: max(8%, env(safe-area-inset-left));
@@ -806,14 +814,19 @@
   </div>
 </section>
 
-<!-- ========== MODIFIED FOOTER: "DONT MENTION THIS IN FOOTER PART" ==========
-     Removed mention of "RAJKUMAR_MUDDASANI PORTFOLIO" per instruction — just minimal icon only -->
+<!-- ========== UPDATED FOOTER WITH PORTFOLIO NAME ========== -->
 <footer class="footer">
-  <p><span style="opacity:0.5;">✦</span>  Data & AI  <span style="opacity:0.5;">✦</span></p>
+  <p>
+    <i class='bx bx-code-alt'></i>
+    <span class="portfolio-name">RAJKUMAR MUDDASANI PORTFOLIO</span>
+    <i class='bx bx-data'></i>
+    <span style="color:#555;">|</span>
+    <span>Data Analyst & AI/ML Engineer</span>
+  </p>
 </footer>
 
 <script>
-  // Navigation System
+  // Navigation System (same as original robust implementation)
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section');
   
