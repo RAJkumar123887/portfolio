@@ -644,7 +644,7 @@
   </div>
   <div class="home-img">
     <div class="image-upload-wrapper" id="photoUploadWrapper">
-      <img id="profileImage" src="https://via.placeholder.com/400x400?text=Click+to+Upload+Photo" alt="Profile Photo">
+      <img id="profileImage" src="passport.jpeg" alt="Profile Photo">
       <div class="upload-overlay">
         <i class='bx bx-camera'></i> Upload Professional Photo
       </div>
